@@ -94,7 +94,7 @@ public class JpaRouteFormRepositoryImpl implements RouteFormRepository {
     @Override
     public List<RouteForm> findRouteFormsByBranchAndDates(Branch branch, LocalDate begDate, LocalDate endDate) throws DataAccessException {
         log.info("Reading RouteForms by Branch: " + branch + " and dates " + begDate + " - " + endDate);
-        TypedQuery<RouteForm> query = em.createQuery("SELECT DISTINCT routeForm FROM RouteForm routeForm WHERE routeForm.branch=:branch " +
+        TypedQuery<RouteForm> query = em.createQuery("SELECT DISTINCT routeForm FROM RouteForm routeForm WHERE routeForm.auto.branch=:branch " +
                 "AND routeForm.date>=:begDate AND routeForm.date<=:endDate", RouteForm.class);
         query.setParameter("branch", branch);
         query.setParameter("begDate", begDate);
