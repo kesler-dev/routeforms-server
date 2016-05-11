@@ -49,6 +49,17 @@ public class JpaRouteFormRepositoryImpl implements RouteFormRepository {
     }
 
     @Override
+    public List<RouteForm> findRouteFormsByBegDate(LocalDate begDate) throws DataAccessException {
+        log.info("Reading RouteForms by begDate: " + begDate);
+        TypedQuery<RouteForm> query = em.createQuery("SELECT DISTINCT routeForm FROM RouteForm routeForm WHERE " +
+                "routeForm.date>=:begDate", RouteForm.class);
+        query.setParameter("begDate", begDate);
+        List<RouteForm> routeForms = query.getResultList();
+        log.info("Read " + routeForms.size() + " RouteForms");
+        return routeForms;
+    }
+
+    @Override
      public RouteForm findRouteFormById(UUID id) throws DataAccessException {
         log.info("Reading RouteForms by id: " + id);
         TypedQuery<RouteForm> query = em.createQuery("SELECT routeForm FROM RouteForm routeForm WHERE routeForm.id=:id", RouteForm.class);
@@ -99,6 +110,18 @@ public class JpaRouteFormRepositoryImpl implements RouteFormRepository {
         query.setParameter("branch", branch);
         query.setParameter("begDate", begDate);
         query.setParameter("endDate", endDate);
+        List<RouteForm> routeForms = query.getResultList();
+        log.info("Read " + routeForms.size() + " RouteForms");
+        return routeForms;
+    }
+
+    @Override
+    public List<RouteForm> findRouteFormsByBranchAndBegDate(Branch branch, LocalDate begDate) throws DataAccessException {
+        log.info("Reading RouteForms by Branch: " + branch + " and begDate " + begDate);
+        TypedQuery<RouteForm> query = em.createQuery("SELECT DISTINCT routeForm FROM RouteForm routeForm WHERE routeForm.auto.branch=:branch " +
+                "AND routeForm.date>=:begDate", RouteForm.class);
+        query.setParameter("branch", branch);
+        query.setParameter("begDate", begDate);
         List<RouteForm> routeForms = query.getResultList();
         log.info("Read " + routeForms.size() + " RouteForms");
         return routeForms;
