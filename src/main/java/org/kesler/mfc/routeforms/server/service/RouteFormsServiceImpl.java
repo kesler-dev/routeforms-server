@@ -259,6 +259,14 @@ public class RouteFormsServiceImpl implements RouteFormsService {
     }
 
     @Override
+    public Collection<RouteForm> findRouteFormsByBegDate(LocalDate begDate) throws DataAccessException {
+        log.info("Getting RouteForms by begDate: " + begDate);
+        Collection<RouteForm> routeForms = routeFormRepository.findRouteFormsByBegDate(begDate);
+        log.info("Received " + routeForms.size() + " RouteForms");
+        return routeForms;
+    }
+
+    @Override
     public RouteForm findRouteFormById(UUID id) throws DataAccessException {
         log.info("Getting RouteForm by id: " + id);
         if (id==null) return null;
@@ -295,6 +303,14 @@ public class RouteFormsServiceImpl implements RouteFormsService {
     public Collection<RouteForm> findRouteFormsByBranchAndDates(Branch branch, LocalDate begDate, LocalDate endDate) throws DataAccessException {
         log.info("Getting RouteForms by branch " + branch + " and dates: " + begDate + " - " + endDate);
         Collection<RouteForm> routeForms = routeFormRepository.findRouteFormsByBranchAndDates(branch, begDate, endDate);
+        log.info("Received " + routeForms.size() + " RouteForms");
+        return routeForms;
+    }
+
+    @Override
+    public Collection<RouteForm> findRouteFormsByBranchAndBegDate(Branch branch, LocalDate begDate) throws DataAccessException {
+        log.info("Getting RouteForms by branch " + branch + " and begDate: " + begDate);
+        Collection<RouteForm> routeForms = routeFormRepository.findRouteFormsByBranchAndBegDate(branch, begDate);
         log.info("Received " + routeForms.size() + " RouteForms");
         return routeForms;
     }

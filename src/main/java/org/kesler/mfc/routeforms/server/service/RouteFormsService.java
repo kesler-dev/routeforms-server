@@ -40,11 +40,13 @@ public interface RouteFormsService {
 
     Collection<RouteForm> findRouteForms() throws DataAccessException;
     Collection<RouteForm> findRouteFormsByDates(LocalDate begDate, LocalDate endDate) throws DataAccessException;
+    Collection<RouteForm> findRouteFormsByBegDate(LocalDate begDate) throws DataAccessException;
     RouteForm findRouteFormById(UUID id) throws DataAccessException;
     Collection<RouteForm> findRouteFormsByAuto(Auto auto) throws DataAccessException;
     Collection<RouteForm> findRouteFormsByAutoAndDates(Auto auto, LocalDate begDate, LocalDate endDate) throws DataAccessException;
     Collection<RouteForm> findRouteFormsByBranch(Branch branch) throws DataAccessException;
     Collection<RouteForm> findRouteFormsByBranchAndDates(Branch branch, LocalDate begDate, LocalDate endDate) throws DataAccessException;
+    Collection<RouteForm> findRouteFormsByBranchAndBegDate(Branch branch, LocalDate begDate) throws DataAccessException;
     void saveRouteForm(RouteForm routeForm) throws DataAccessException;
     void removeRouteForm(UUID id) throws DataAccessException;
 

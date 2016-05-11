@@ -131,12 +131,18 @@ public class RouteFormsController {
         return routeFormsService.findRouteForms();
     }
 
-    @RequestMapping(path = "/routeforms/by-dates/{begDate}/{endDate}")
+    @RequestMapping(path = "/routeforms/by-dates/{begDate}to{endDate}")
     public Collection<RouteForm> getRouteFormsDates(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                                                     @PathVariable LocalDate begDate,
                                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                                                     @PathVariable LocalDate endDate) {
         return routeFormsService.findRouteFormsByDates(begDate, endDate);
+    }
+
+    @RequestMapping(path = "/routeforms/by-beg-date/{begDate}")
+    public Collection<RouteForm> getRouteFormsByBegDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                                        @PathVariable LocalDate begDate) {
+        return routeFormsService.findRouteFormsByBegDate(begDate);
     }
 
     @RequestMapping(path = "/routeforms/{id}")
@@ -150,7 +156,7 @@ public class RouteFormsController {
         return routeFormsService.findRouteFormsByAuto(auto);
     }
 
-    @RequestMapping(path = "/routeforms/by-auto/{autoId}/by-dates/{begDate}/{endDate}")
+    @RequestMapping(path = "/routeforms/by-auto/{autoId}/by-dates/{begDate}to{endDate}")
     public Collection<RouteForm> getRouteFormsByAutoAndDates(@PathVariable UUID autoId,
                                                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                                                              @PathVariable LocalDate begDate,
@@ -166,7 +172,7 @@ public class RouteFormsController {
         return routeFormsService.findRouteFormsByBranch(branch);
     }
 
-    @RequestMapping(path = "/routeforms/by-branch/{branchId}/by-dates/{begDate}/{endDate}")
+    @RequestMapping(path = "/routeforms/by-branch/{branchId}/by-dates/{begDate}to{endDate}")
     public Collection<RouteForm> getRouteFormsByBranchAndDates(@PathVariable UUID branchId,
                                                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                                                              @PathVariable LocalDate begDate,
@@ -174,6 +180,14 @@ public class RouteFormsController {
                                                              @PathVariable LocalDate endDate) {
         Branch branch = routeFormsService.findBranchById(branchId);
         return routeFormsService.findRouteFormsByBranchAndDates(branch, begDate, endDate);
+    }
+
+    @RequestMapping(path = "/routeforms/by-branch/{branchId}/by-beg-date/{begDate}")
+    public Collection<RouteForm> getRouteFormsByBranchAndBegDate(@PathVariable UUID branchId,
+                                                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                                             @PathVariable LocalDate begDate) {
+        Branch branch = routeFormsService.findBranchById(branchId);
+        return routeFormsService.findRouteFormsByBranchAndBegDate(branch, begDate);
     }
 
 
