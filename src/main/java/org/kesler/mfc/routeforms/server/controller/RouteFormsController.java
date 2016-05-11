@@ -142,7 +142,7 @@ public class RouteFormsController {
     @RequestMapping(path = "/routeforms/by-beg-date/{begdate}")
     public Collection<RouteForm> getRouteFormsByBegDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                                                         @PathVariable LocalDate begDate) {
-        return routeFormsService.findRouteFormsByDates(begDate, null);
+        return routeFormsService.findRouteFormsByBegDate(begDate);
     }
 
     @RequestMapping(path = "/routeforms/{id}")
@@ -185,11 +185,9 @@ public class RouteFormsController {
     @RequestMapping(path = "/routeforms/by-branch/{branchId}/by-beg-date/{begDate}")
     public Collection<RouteForm> getRouteFormsByBranchAndBegDate(@PathVariable UUID branchId,
                                                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                                             @PathVariable LocalDate begDate,
-                                                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                                             @PathVariable LocalDate endDate) {
+                                                             @PathVariable LocalDate begDate) {
         Branch branch = routeFormsService.findBranchById(branchId);
-        return routeFormsService.findRouteFormsByBranchAndDates(branch, begDate, endDate);
+        return routeFormsService.findRouteFormsByBranchAndBegDate(branch, begDate);
     }
 
 
