@@ -1,6 +1,5 @@
 package org.kesler.mfc.routeforms.server.repository.support;
 
-import org.kesler.mfc.routeforms.server.domain.Auto;
 import org.kesler.mfc.routeforms.server.domain.Employee;
 import org.kesler.mfc.routeforms.server.repository.EmployeeRepository;
 import org.slf4j.Logger;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.UUID;
