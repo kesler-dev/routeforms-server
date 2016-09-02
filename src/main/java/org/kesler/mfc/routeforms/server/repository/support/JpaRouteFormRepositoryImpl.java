@@ -72,7 +72,7 @@ public class JpaRouteFormRepositoryImpl implements RouteFormRepository {
     @Override
      public RouteForm findRouteFormByPreviousId(UUID previousId) throws DataAccessException {
         log.info("Reading RouteForm by PreviousId: " + previousId);
-        TypedQuery<RouteForm> query = em.createQuery("SELECT routeForm FROM RouteForm routeForm WHERE routeForm.previousRouteFormId=:previousId", RouteForm.class);
+        TypedQuery<RouteForm> query = em.createQuery("SELECT routeForm FROM RouteForm routeForm WHERE routeForm.previousRouteFormID=:previousId", RouteForm.class);
         query.setParameter("previousId", previousId);
         RouteForm routeForm = query.getSingleResult();
         log.info("Read " + routeForm);
