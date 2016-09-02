@@ -17,6 +17,7 @@ public interface RouteFormRepository {
     List<RouteForm> findRouteFormsByDates(LocalDate begDate, LocalDate endDate) throws DataAccessException;
     List<RouteForm> findRouteFormsByBegDate(LocalDate begDate) throws DataAccessException;
     RouteForm findRouteFormById(UUID id) throws DataAccessException;
+    RouteForm findRouteFormByPreviousId(UUID id) throws DataAccessException;
     List<RouteForm> findRouteFormsByAuto(Auto auto) throws DataAccessException;
     List<RouteForm> findRouteFormsByAutoAndDates(Auto auto, LocalDate begDate, LocalDate endDate) throws DataAccessException;
     List<RouteForm> findRouteFormsByBranch(Branch branch) throws DataAccessException;
