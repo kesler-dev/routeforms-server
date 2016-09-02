@@ -150,6 +150,11 @@ public class RouteFormsController {
         return routeFormsService.findRouteFormById(id);
     }
 
+    @RequestMapping(path = "/routeforms/previous/{id}")
+    public RouteForm getRouteFormByPreviousId(@PathVariable UUID id) {
+        return routeFormsService.findRouteFormByPreviousId(id);
+    }
+
     @RequestMapping(path = "/routeforms/by-auto/{autoId}")
     public Collection<RouteForm> getRouteFormsByAuto(@PathVariable UUID autoId) {
         Auto auto =routeFormsService.findAutoById(autoId);
