@@ -276,6 +276,15 @@ public class RouteFormsServiceImpl implements RouteFormsService {
     }
 
     @Override
+    public RouteForm findRouteFormByPreviousId(UUID previousId) throws DataAccessException {
+        log.info("Getting RouteForm by previousId: " + previousId);
+        if (previousId==null) return null;
+        RouteForm routeForm = routeFormRepository.findRouteFormByPreviousId(previousId);
+        log.info("Received RouteForm " + routeForm);
+        return routeForm;
+    }
+
+    @Override
     public Collection<RouteForm> findRouteFormsByAuto(Auto auto) throws DataAccessException {
         log.info("Getting RouteForms by auto " + auto);
         Collection<RouteForm> routeForms = routeFormRepository.findRouteFormsByAuto(auto);
