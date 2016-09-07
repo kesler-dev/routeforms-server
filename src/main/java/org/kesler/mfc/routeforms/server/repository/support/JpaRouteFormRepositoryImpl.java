@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -74,7 +71,12 @@ public class JpaRouteFormRepositoryImpl implements RouteFormRepository {
         log.info("Reading RouteForm by PreviousId: " + previousId);
         TypedQuery<RouteForm> query = em.createQuery("SELECT routeForm FROM RouteForm routeForm WHERE routeForm.previousRouteFormID=:previousId", RouteForm.class);
         query.setParameter("previousId", previousId);
-        RouteForm routeForm = query.getSingleResult();
+        RouteForm routeForm = null;
+        try {
+            routeForm = query.getSingleResult();
+        } catch (NoResultException nre) {
+            log.debug("Previous RouteForm not found");
+        }
         log.info("Read " + routeForm);
         return routeForm;
     }
