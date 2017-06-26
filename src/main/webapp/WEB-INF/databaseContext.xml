@@ -18,19 +18,8 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <bean id="dataSourceFactory" class="org.apache.tomcat.jdbc.pool.DataSourceFactory">
+    <jee:jndi-lookup jndi-name="jdbc/routeforms" id="dataSource" expected-type="javax.sql.DataSource" />
 
-    </bean>
-
-    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://10.10.0.170:3306/Routeforms"/>
-        <property name="username" value="manager"/>
-        <property name="password" value="q1w2e3R$"/>
-        <property name="testOnBorrow" value="true"/>
-        <property name="validationQuery" value="SELECT 1"/>
-
-    </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
