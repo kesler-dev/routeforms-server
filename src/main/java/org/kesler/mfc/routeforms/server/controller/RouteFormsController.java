@@ -211,20 +211,20 @@ public class RouteFormsController {
 
 
 
-    @RequestMapping(path = "/branchrouteformedit/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/branchrouteformedit/{branchId}", method = RequestMethod.GET)
     public ResponseEntity<BranchRouteFormEditing> checkBranchRouteFormEditing(@PathVariable UUID branchId) {
         BranchRouteFormEditing editing = routeFormsService.checkBranchRouteFormEditing(branchId);
         return ResponseEntity.ok(editing);
     }
 
-    @RequestMapping(path = "/branchrouteformedit/{id}", method = RequestMethod.PUT)
-    public ResponseEntity setBranchRouteFormEditing(@PathVariable UUID branchId) {
-        routeFormsService.setBranchRouteFormEditing(branchId);
+    @RequestMapping(path = "/branchrouteformedit", method = RequestMethod.POST)
+    public ResponseEntity setBranchRouteFormEditing(@RequestBody BranchRouteFormEditing editing) {
+        routeFormsService.setBranchRouteFormEditing(editing);
         return ResponseEntity.accepted().build();
     }
 
 
-    @RequestMapping(path = "/branchrouteformedit/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/branchrouteformedit/{branchId}", method = RequestMethod.DELETE)
     public ResponseEntity unsetBranchRouteFormEditing(@PathVariable UUID branchId) {
         routeFormsService.unsetBranchRouteFormEditing(branchId);
         return ResponseEntity.accepted().build();

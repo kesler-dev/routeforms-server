@@ -343,13 +343,12 @@ public class RouteFormsServiceImpl implements RouteFormsService {
 
     @Override
     public BranchRouteFormEditing checkBranchRouteFormEditing(UUID branchId) {
-        branchRepository.checkRouteFormEditing(branchId);
-        return null;
+        return branchRepository.checkRouteFormEditing(branchId);
     }
 
     @Override
-    public void setBranchRouteFormEditing(UUID branchId) {
-        branchRepository.setRouteFormEditing(branchId);
+    public void setBranchRouteFormEditing(BranchRouteFormEditing editing) {
+        branchRepository.setRouteFormEditing(editing);
     }
 
     @Override

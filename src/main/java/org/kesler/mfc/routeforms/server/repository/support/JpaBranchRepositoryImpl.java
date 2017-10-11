@@ -72,10 +72,8 @@ public class JpaBranchRepositoryImpl implements BranchRepository {
     }
 
     @Override
-    public void setRouteFormEditing(UUID branchId) {
-        log.info("Setting RouteForm editing for branch: " + branchId);
-        BranchRouteFormEditing editing = new BranchRouteFormEditing();
-        editing.setId(branchId);
+    public void setRouteFormEditing(BranchRouteFormEditing editing) {
+        log.info("Setting RouteForm editing for branch: " + editing.getId());
         em.merge(editing);
         log.info("Setting complete");
     }

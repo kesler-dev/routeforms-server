@@ -52,7 +52,7 @@ public interface RouteFormsService {
     void removeRouteForm(UUID id) throws DataAccessException;
 
     BranchRouteFormEditing checkBranchRouteFormEditing(UUID branchId);
-    void setBranchRouteFormEditing(UUID branchId);
+    void setBranchRouteFormEditing(BranchRouteFormEditing editing);
     void unsetBranchRouteFormEditing(UUID branchId);
 
     ApplicationOptions loadOptions() throws DataAccessException;

@@ -16,6 +16,6 @@ public interface BranchRepository {
     void save(Branch branch) throws DataAccessException;
     void remove(UUID id) throws DataAccessException;
     BranchRouteFormEditing checkRouteFormEditing(UUID branchId);
-    void setRouteFormEditing(UUID branchId);
+    void setRouteFormEditing(BranchRouteFormEditing editing);
     void unsetRouteFormEditing(UUID branchId);
 }
