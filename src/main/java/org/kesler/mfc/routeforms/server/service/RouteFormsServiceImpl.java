@@ -341,7 +341,21 @@ public class RouteFormsServiceImpl implements RouteFormsService {
     }
 
 
+    @Override
+    public BranchRouteFormEditing checkBranchRouteFormEditing(UUID branchId) {
+        branchRepository.checkRouteFormEditing(branchId);
+        return null;
+    }
 
+    @Override
+    public void setBranchRouteFormEditing(UUID branchId) {
+        branchRepository.setRouteFormEditing(branchId);
+    }
+
+    @Override
+    public void unsetBranchRouteFormEditing(UUID branchId) {
+        branchRepository.unsetRouteFormEditing(branchId);
+    }
 
     @Override
     public ApplicationOptions loadOptions() throws DataAccessException {

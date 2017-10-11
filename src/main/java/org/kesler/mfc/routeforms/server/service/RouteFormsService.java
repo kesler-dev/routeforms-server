@@ -51,6 +51,10 @@ public interface RouteFormsService {
     void saveRouteForm(RouteForm routeForm) throws DataAccessException;
     void removeRouteForm(UUID id) throws DataAccessException;
 
+    BranchRouteFormEditing checkBranchRouteFormEditing(UUID branchId);
+    void setBranchRouteFormEditing(UUID branchId);
+    void unsetBranchRouteFormEditing(UUID branchId);
+
     ApplicationOptions loadOptions() throws DataAccessException;
     void saveOptions(ApplicationOptions applicationOptions) throws DataAccessException;
 

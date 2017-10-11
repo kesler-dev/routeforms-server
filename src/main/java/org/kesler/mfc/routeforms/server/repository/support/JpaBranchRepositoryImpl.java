@@ -1,6 +1,7 @@
 package org.kesler.mfc.routeforms.server.repository.support;
 
 import org.kesler.mfc.routeforms.server.domain.Branch;
+import org.kesler.mfc.routeforms.server.domain.BranchRouteFormEditing;
 import org.kesler.mfc.routeforms.server.repository.BranchRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.UUID;
@@ -61,5 +61,34 @@ public class JpaBranchRepositoryImpl implements BranchRepository {
         Branch managedBranch = em.getReference(Branch.class, id);
         em.remove(managedBranch);
         log.info("Removing complete");
+    }
+
+    @Override
+    public BranchRouteFormEditing checkRouteFormEditing(UUID branchId) {
+        log.info("Checking routeForm is editing for branch: " + branchId);
+        BranchRouteFormEditing editing = em.find(BranchRouteFormEditing.class, branchId);
+        log.info("Check result: " + editing);
+        return editing;
+    }
+
+    @Override
+    public void setRouteFormEditing(UUID branchId) {
+        log.info("Setting RouteForm editing for branch: " + branchId);
+        BranchRouteFormEditing editing = new BranchRouteFormEditing();
+        editing.setId(branchId);
+        em.merge(editing);
+        log.info("Setting complete");
+    }
+
+    @Override
+    public void unsetRouteFormEditing(UUID branchId) {
+        log.info("Unsetting RouteForm editing for branch: " + branchId);
+        BranchRouteFormEditing editing = em.find(BranchRouteFormEditing.class, branchId);
+        if (editing!=null) {
+            em.remove(editing);
+        } else {
+            log.debug("Not found RouteForm editing");
+        }
+        log.info("Unsetting complete");
     }
 }
