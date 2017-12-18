@@ -1,0 +1,14 @@
+#!/bin/bash
+mvn package
+rc=$?
+if [[ $rc != 0 ]] ; then
+   exit $rc
+fi
+echo "Deploy file: `du -h target/routeforms.war`"
+echo 'To servers..'
+echo
+echo '-> RouteformsTest (10.10.0.72)..'
+res=$(curl -# --upload-file target/routeforms.war "http://admin:Admin321@10.10.0.72:80/manager/text/deploy?path=/routeforms&update=true" >&1)
+echo "$res"
+echo 'Complete'
+

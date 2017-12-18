@@ -18,6 +18,8 @@ public class Driver extends AbstractEntity {
     protected String fioShort;
     @Column(name = "DriverLicense", length = 31)
     protected String driverLicense;
+    @Column(name = "DriverCategory", length = 31)
+    protected String driverCategory;
     @Column(name = "TabelNum", length = 31)
     protected String tabelNum;
     @ManyToOne
@@ -35,6 +37,9 @@ public class Driver extends AbstractEntity {
 
     public String getDriverLicense() { return driverLicense; }
     public void setDriverLicense(String driverLicense) { this.driverLicense = driverLicense; }
+
+    public String getDriverCategory() { return driverCategory; }
+    public void setDriverCategory(String driverCategory) { this.driverCategory = driverCategory; }
 
     public String getTabelNum() { return tabelNum; }
     public void setTabelNum(String tabelNum) { this.tabelNum = tabelNum; }
