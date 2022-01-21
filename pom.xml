@@ -33,10 +33,13 @@
                 <version>3.2.0</version>
                 <configuration>
                     <from>
-                        bellsoft/liberica-openjdk-alpine:8u312
+                        <image>bellsoft/liberica-openjdk-alpine:8u312</image>
                     </from>
                     <to>
-                        <image>myimage</image>
+                        <image>kesler/apps</image>
+                        <tags>
+                            <tag>routeforms-server-2.0.0.3</tag>
+                        </tags>
                     </to>
                 </configuration>
             </plugin>
